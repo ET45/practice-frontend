@@ -7,22 +7,26 @@ import Loading from "./components/Loading";
 import MessageBox from "./components/MessageBox";
 import SignUp from "./pages/SignUp";
 import Login from "./pages/Login";
+import Homepage from "./pages/Homepage";
+import DetailPage from "./pages/DetailPage";
+import MySpace from "./pages/MySpace";
 
 import { useDispatch, useSelector } from "react-redux";
 import { selectAppLoading } from "./store/appState/selectors";
 import { getUserWithStoredToken } from "./store/user/actions";
-import { Jumbotron } from "react-bootstrap";
 
-const Home = () => (
+/* import { Jumbotron } from "react-bootstrap"; */
+
+/* const Home = () => (
   <Jumbotron>
     <h1>Home</h1>
   </Jumbotron>
-);
-const Other = () => (
+); */
+/* const Other = () => (
   <Jumbotron>
     <h1>Other</h1>
   </Jumbotron>
-);
+); */
 
 function App() {
   const dispatch = useDispatch();
@@ -33,15 +37,16 @@ function App() {
   }, [dispatch]);
 
   return (
-    <div className='App'>
+    <div className="App">
       <Navigation />
       <MessageBox />
       {isLoading ? <Loading /> : null}
       <Routes>
-        <Route exact path='/' element={<Home />} />
-        <Route path='/other' element={<Other />} />
-        <Route path='/signup' element={<SignUp />} />
-        <Route path='/login' element={<Login />} />
+        <Route exact path="/" element={<Homepage />} />
+        <Route path="/me" element={<MySpace />} />
+        <Route path="/space/:id" element={<DetailPage />} />
+        <Route path="/signup" element={<SignUp />} />
+        <Route path="/login" element={<Login />} />
       </Routes>
     </div>
   );
